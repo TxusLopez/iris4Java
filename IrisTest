@@ -1,0 +1,129 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package irisdriver;
+
+import java.util.Dictionary;
+import java.util.Hashtable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author TxusLópez
+ */
+public class IrisTest {
+    
+    Iris test;
+    
+    public IrisTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+        try {
+            test = new Iris("D:\\tree(J48_cv).model");
+        } catch (Exception e){
+            fail("Iris class creation failed: " + e.getMessage());
+        }
+        
+    }
+    
+    @After
+    public void tearDown() {
+        test.close();
+
+    }
+
+    /**
+     * Test of close method, of class Iris.
+     */
+    @Test
+    public void testClose() {
+        try {
+            System.out.println("close");
+            //Iris instance = new Iris();
+            //instance.close();
+            // TODO review the generated test code and remove the default call to fail.
+            //fail("The test case is a prototype.");
+        } catch (Exception ex) {
+            Logger.getLogger(IrisTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * Test of classifySpecies method, of class Iris.
+     */
+    @Test
+    public void testClassifySpecies() throws Exception {
+        System.out.println("classifySpecies");
+        
+        Hashtable<String, String> testValues = new Hashtable<String, String>();
+
+        testValues.put("Sepal.Length", "5.57091678078844");
+        testValues.put("Sepal.Width", "3.09644861465126"); 
+        testValues.put("Petal.Length", "1.23725924762744");
+        testValues.put("Petal.Width", "0.113236009159561");
+        
+        if(test.classifySpecies(testValues) != "setosa")
+                fail("setosa Test A failed.");
+        testValues.clear();
+
+        testValues.put("Sepal.Length", "4.77691762776391"); 
+        testValues.put("Sepal.Width", "3.77865948462588"); 
+        testValues.put("Petal.Length", "1.59390335312276"); 
+        testValues.put("Petal.Width", "0.151398435020841");
+        if(test.classifySpecies(testValues) != "setosa")
+                fail("setosa Test B failed.");
+        testValues.clear();
+
+        testValues.put("Sepal.Length", "6.8432895741882"); 
+        testValues.put("Sepal.Width", "3.17436555918227"); 
+        testValues.put("Petal.Length", "4.25657322635841"); 
+        testValues.put("Petal.Width", "1.50311077472507");
+        if(test.classifySpecies(testValues) != "versicolor")
+                fail("versicolor Test A failed.");
+        testValues.clear();
+
+        testValues.put("Sepal.Length", "6.23057539842681");
+        testValues.put("Sepal.Width", "3.03298741883935"); 
+        testValues.put("Petal.Length", "4.88482355399702"); 
+        testValues.put("Petal.Width", "1.52102228144702");
+        if(test.classifySpecies(testValues) != "versicolor")
+                fail("versicolor Test B failed.");
+        testValues.clear();
+
+        testValues.put("Sepal.Length", "6.85295094185716"); 
+        testValues.put("Sepal.Width", "2.51646353971598"); 
+        testValues.put("Petal.Length", "4.21432509213448"); 
+        testValues.put("Petal.Width", "1.74441756575054"); 
+        if(test.classifySpecies(testValues) != "virginica")
+                fail("virginica Test A failed.");
+        testValues.clear();
+
+        testValues.put("Sepal.Length", "6.49528665967672"); 
+        testValues.put("Sepal.Width", "3.35602021055031"); 
+        testValues.put("Petal.Length", "5.84872081384769"); 
+        testValues.put("Petal.Width", "2.01056615251337"); 
+        if(test.classifySpecies(testValues) != "virginica")
+                fail("virginica Test B failed.");
+        testValues.clear();
+    }
+    
+}
