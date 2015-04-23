@@ -1,5 +1,5 @@
 # iris4Java
-Java code for iris dataset
+Java code for iris dataset for learning purposes
 
 Here you can find a basic example about how to use the WEKA library in Java. The code uses a decision tree algorithm (C4.5-->J48 in WEKA) to classify instances of the iris dataset.
 
